@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/output.css">
+    <title>Added Home</title>
 </head>
-<body>
-     <h1>YOUR HOME ADDED SUCESSFULLY</h1>
-     
-    <a href="/">GO TO HOME</a>
+<body class="min-h-screen bg-slate-100 text-slate-800">
+    <main class="mx-auto flex min-h-screen max-w-2xl items-center justify-center px-4">
+        <section class="w-full rounded-xl bg-white p-8 text-center shadow">
+            <h1 class="text-2xl font-bold text-green-700">Your home was added successfully</h1>
+            <p class="mt-2 text-slate-600">You can go back home or add another listing.</p>
+            <div class="mt-6 flex items-center justify-center gap-3">
+                <a href="/" class="rounded-md bg-blue-600 px-5 py-2.5 text-white transition hover:bg-blue-700">Go to Home</a>
+                <a href="/host/add-home" class="rounded-md border border-slate-300 px-5 py-2.5 text-slate-700 transition hover:bg-slate-100">Add Another</a>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

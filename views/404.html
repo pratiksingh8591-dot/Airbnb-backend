@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/output.css">
+    <title>Page Not Found</title>
 </head>
-<body>
-    <h1>404 your page is not found</h1>
+<body class="min-h-screen bg-slate-100 text-slate-800">
+    <main class="mx-auto flex min-h-screen max-w-2xl items-center justify-center px-4">
+        <section class="w-full rounded-xl bg-white p-8 text-center shadow">
+            <p class="text-sm font-semibold text-red-600">Error 404</p>
+            <h1 class="mt-2 text-3xl font-bold">Page not found</h1>
+            <p class="mt-2 text-slate-600">The page you are trying to open does not exist.</p>
+            <a href="/" class="mt-6 inline-block rounded-md bg-blue-600 px-5 py-2.5 text-white transition hover:bg-blue-700">Go to Home</a>
+        </section>
+    </main>
 </body>
 </html>

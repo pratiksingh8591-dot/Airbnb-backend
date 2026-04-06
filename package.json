@@ -8,11 +8,13 @@
   "main": "air.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node air.js"
+    "tailwind": "npx tailwindcss -i ./views/input.css -o ./public/output.css",
+    "start": "nodemon air.js & npm run tailwind"
   },
   "keywords": [],
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.27",

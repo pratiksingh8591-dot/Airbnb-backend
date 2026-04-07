@@ -11,11 +11,24 @@
         <marquee class="px-4 py-3 text-lg font-bold">Welcome To AIR-BNB</marquee>
     </header>
 
-    <main class="mx-auto max-w-3xl px-4 py-10">
+    <main class="mx-auto max-w-3xl px-4 py-10 space-y-6">
         <section class="rounded-xl bg-white p-6 shadow">
             <h1 class="text-2xl font-bold">Find your next stay</h1>
             <p class="mt-2 text-slate-600">Start by adding a new home listing.</p>
             <a href="/host/add-home" class="mt-6 inline-block rounded-md bg-blue-600 px-5 py-2.5 text-white transition hover:bg-blue-700">Add Home</a>
+        </section>
+
+        <section class="rounded-xl bg-white p-6 shadow">
+            <h2 class="text-center text-xl font-semibold tracking-wide text-slate-700">HERE ARE OUR BOOKED HOMES</h2>
+            <ul class="mt-4 list-disc space-y-2 pl-6 text-slate-700">
+                <% if (regHomes.length === 0) { %>
+                    <li>No homes registered yet.</li>
+                <% } else { %>
+                    <% regHomes.forEach((home) => { %>
+                        <li><span class="font-semibold"><%= home.housename %></span> owned by <%= home.name %></li>
+                    <% }) %>
+                <% } %>
+            </ul>
         </section>
     </main>
 </body>

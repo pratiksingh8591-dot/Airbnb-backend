@@ -1,8 +1,11 @@
 const express=require('express');
-const host=require("./routes/host");
+const {hostRouter}=require("./routes/host");
 const user=require("./routes/user")
 const path=require('path')
  const app=express();
+ app.set('view engine','ejs');
+ app.set('views','views');
+
  const rootdir=require('./utils/pathutil')
 app.use((req,res,next)=>{
   console.log(req.method,req.url)
@@ -11,7 +14,7 @@ app.use((req,res,next)=>{
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(rootdir,'public')))
 app.use(user);
-app.use("/host",host);
+app.use("/host",hostRouter);
 app.use((req,res,next)=>{
   res.status(404).sendFile(path.join(rootdir,'views','404.html'));
 })

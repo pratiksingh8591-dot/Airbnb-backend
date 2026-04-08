@@ -7,10 +7,7 @@
     <title>Home</title>
 </head>
 <body class="min-h-screen bg-slate-100 text-slate-800">
-    <header class="bg-red-600 text-white shadow">
-        <marquee class="px-4 py-3 text-lg font-bold">Welcome To AIR-BNB</marquee>
-    </header>
-
+    <%- include('partials/nav')%>
     <main class="mx-auto max-w-3xl px-4 py-10 space-y-6">
         <section class="rounded-xl bg-white p-6 shadow">
             <h1 class="text-2xl font-bold">Find your next stay</h1>
@@ -24,8 +21,8 @@
                 <% if (regHomes.length === 0) { %>
                     <li>No homes registered yet.</li>
                 <% } else { %>
-                    <% regHomes.forEach((home) => { %>
-                        <li><span class="font-semibold"><%= home.housename %></span> owned by <%= home.name %></li>
+                    <% regHomes.forEach((i) => { %>
+                        <li><span class="font-semibold"><%= i.housename %></span> owned by <%= i.name %></li>
                     <% }) %>
                 <% } %>
             </ul>

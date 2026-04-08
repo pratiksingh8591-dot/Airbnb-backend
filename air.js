@@ -16,7 +16,7 @@ app.use(express.static(path.join(rootdir,'public')))
 app.use(user);
 app.use("/host",hostRouter);
 app.use((req,res,next)=>{
-  res.status(404).sendFile(path.join(rootdir,'views','404.html'));
+  res.status(404).render('404',{content:"oh oh try again"});
 })
 const port = 3001;
 app.listen(port, () => {

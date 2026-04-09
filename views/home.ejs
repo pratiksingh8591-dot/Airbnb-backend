@@ -17,16 +17,57 @@
 
         <section class="rounded-xl bg-white p-6 shadow">
             <h2 class="text-center text-xl font-semibold tracking-wide text-slate-700">HERE ARE OUR BOOKED HOMES</h2>
-            <ul class="mt-4 list-disc space-y-2 pl-6 text-slate-700">
+            <ul class="mt-4 grid gap-4 text-slate-700 sm:grid-cols-2">
                 <% if (regHomes.length === 0) { %>
-                    <li>No homes registered yet.</li>
+                    <li class="rounded-lg border border-dashed border-slate-300 p-4 sm:col-span-2">No homes registered yet.</li>
                 <% } else { %>
-                    <% regHomes.forEach((i) => { %>
-                        <li><span class="font-semibold"><%= i.housename %></span> owned by <%= i.name %></li>
+                    <% regHomes.forEach((i, cardIndex) => { %>
+                        <li class="rounded-xl border border-slate-200 bg-slate-50 p-4 shadow-sm">
+                            <% const photos = i.photoUrls && i.photoUrls.length ? i.photoUrls : [i.photoUrl].filter(Boolean); %>
+                            <% if (photos.length > 0) { %>
+                                <div class="relative mb-3">
+                                    <div class="overflow-hidden rounded-lg border border-slate-200 bg-white">
+                                        <div id="photos-<%= cardIndex %>" class="relative h-52 w-full" data-index="0">
+                                            <% photos.forEach((photo, index) => { %>
+                                                <% if (index === 0) { %>
+                                                    <img src="<%= photo %>" alt="<%= i.housename %> photo <%= index + 1 %>" class="absolute inset-0 h-52 w-full object-cover" style="display: block;" data-photo-slide>
+                                                <% } else { %>
+                                                    <img src="<%= photo %>" alt="<%= i.housename %> photo <%= index + 1 %>" class="absolute inset-0 h-52 w-full object-cover" style="display: none;" data-photo-slide>
+                                                <% } %>
+                                            <% }) %>
+                                        </div>
+                                    </div>
+                                    <button type="button" aria-label="Previous photo" class="absolute left-0 top-1/2 z-20 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-xl font-bold text-slate-800 shadow-lg ring-1 ring-slate-300" onclick="slidePhotos('photos-<%= cardIndex %>', -1)">&lt;</button>
+                                    <button type="button" aria-label="Next photo" class="absolute right-0 top-1/2 z-20 flex h-10 w-10 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-xl font-bold text-slate-800 shadow-lg ring-1 ring-slate-300" onclick="slidePhotos('photos-<%= cardIndex %>', 1)">&gt;</button>
+                                </div>
+                            <% } %>
+                            <h3 class="text-lg font-semibold text-slate-900"><%= i.housename %></h3>
+                            <p class="mt-1 text-sm text-slate-600">Host Name: <span class="font-medium text-slate-800"><%= i.name %></span></p>
+                            <p class="mt-1 text-sm text-slate-600">Location: <span class="font-medium text-slate-800"><%= i.location %></span></p>
+                            <p class="mt-1 text-sm text-slate-600">Price/Night: <span class="font-medium text-slate-800">Gold-coins <%= i.pricePerNight %></span></p>
+                            <p class="mt-1 text-sm text-slate-600">Rating: <span class="font-medium text-slate-800"><%= i.rating %> / 5</span></p>
+                        </li>
                     <% }) %>
                 <% } %>
             </ul>
         </section>
     </main>
+    <script>
+        function slidePhotos(containerId, direction) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            const slides = container.querySelectorAll('[data-photo-slide]');
+            const totalSlides = slides.length;
+            if (!totalSlides) return;
+
+            const currentIndex = Number(container.dataset.index || 0);
+            const nextIndex = (currentIndex + direction + totalSlides) % totalSlides;
+
+            slides[currentIndex].style.display = 'none';
+            slides[nextIndex].style.display = 'block';
+            container.dataset.index = String(nextIndex);
+        }
+    </script>
 </body>
 </html>

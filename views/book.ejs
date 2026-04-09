@@ -8,25 +8,57 @@
 </head>
 <body class="min-h-screen bg-slate-100 text-slate-800">
     <%- include('partials/nav')%>
-    <main class="mx-auto max-w-xl px-4 py-10">
-        <section class="rounded-xl bg-white p-6 shadow">
-            <h1 class="text-2xl font-bold">Add Home</h1>
-            <p class="mt-1 text-sm text-slate-600">Fill in the details below.</p>
+    <main class="mx-auto max-w-3xl px-4 py-10">
+        <section class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg">
+            <div class="bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-700 px-6 py-5 text-white">
+                <h1 class="text-2xl font-bold">Add Home</h1>
+                <p class="mt-1 text-sm text-blue-100">Share your place with complete details for better bookings.</p>
+            </div>
 
-            <form action="/host/add-home" method="POST" class="mt-6 space-y-4">
-                <div>
-                    <label for="name" class="mb-1 block text-sm font-medium">Name</label>
-                    <input type="text" id="name" name="name" class="w-full rounded-md border border-slate-300 px-3 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+            <form action="/host/add-home" method="POST" class="grid gap-6 px-5 py-7 sm:px-7 md:grid-cols-2 md:px-10">
+                <div class="md:pl-3">
+                    <label for="name" class="mb-1 block text-sm font-medium text-slate-700">Host Name</label>
+                    <input type="text" id="name" name="name" required class="w-full rounded-md border border-slate-300 px-3 py-2 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
                 </div>
 
-                <div>
-                    <label for="house-name" class="mb-1 block text-sm font-medium">House Name</label>
-                    <input type="text" id="house-name" name="house-name" class="w-full rounded-md border border-slate-300 px-3 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+                <div class="md:pl-3">
+                    <label for="house-name" class="mb-1 block text-sm font-medium text-slate-700">House Name</label>
+                    <input type="text" id="house-name" name="house-name" required class="w-full rounded-md border border-slate-300 px-3 py-2 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
                 </div>
 
-                <div class="flex items-center gap-3 pt-2">
-                    <button type="submit" class="rounded-md bg-blue-600 px-5 py-2.5 text-white transition hover:bg-blue-700">Submit</button>
-                    <a href="/" class="text-sm font-medium text-blue-600 hover:text-blue-700">Back to Home</a>
+                <div class="md:pl-3">
+                    <label for="location" class="mb-1 block text-sm font-medium text-slate-700">Location</label>
+                    <input type="text" id="location" name="location" required class="w-full rounded-md border border-slate-300 px-3 py-2 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+                </div>
+
+                <div class="md:pl-3">
+                    <label for="price-per-night" class="mb-1 block text-sm font-medium text-slate-700">Price Per Night (Gold Coins)</label>
+                    <input type="number" id="price-per-night" name="price-per-night" min="1" required class="w-full rounded-md border border-slate-300 px-3 py-2 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+                </div>
+
+                <div class="md:col-span-2 md:pl-3">
+                    <label for="rating" class="mb-1 block text-sm font-medium text-slate-700">Rating (0 to 5)</label>
+                    <input type="number" id="rating" name="rating" min="0" max="5" step="0.1" required class="w-full rounded-md border border-slate-300 px-3 py-2 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+                </div>
+
+                <div class="md:col-span-2 md:pl-3">
+                    <label for="photo-url-1" class="mb-1 block text-sm font-medium text-slate-700">Photo URL 1</label>
+                    <input type="url" id="photo-url-1" name="photo-url-1" placeholder="https://example.com/home-1.jpg" required class="w-full rounded-md border border-slate-300 px-3 py-2 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+                </div>
+
+                <div class="md:col-span-2 md:pl-3">
+                    <label for="photo-url-2" class="mb-1 block text-sm font-medium text-slate-700">Photo URL 2 (Optional)</label>
+                    <input type="url" id="photo-url-2" name="photo-url-2" placeholder="https://example.com/home-2.jpg" class="w-full rounded-md border border-slate-300 px-3 py-2 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+                </div>
+
+                <div class="md:col-span-2 md:pl-3">
+                    <label for="photo-url-3" class="mb-1 block text-sm font-medium text-slate-700">Photo URL 3 (Optional)</label>
+                    <input type="url" id="photo-url-3" name="photo-url-3" placeholder="https://example.com/home-3.jpg" class="w-full rounded-md border border-slate-300 px-3 py-2 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+                </div>
+
+                <div class="md:col-span-2 flex flex-wrap items-center gap-3 pt-2 md:pl-3">
+                    <button type="submit" class="rounded-md bg-blue-600 px-5 py-2.5 font-semibold text-white transition hover:bg-blue-700">Submit Home</button>
+                    <a href="/" class="rounded-md border border-slate-300 px-5 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-100">Back to Home</a>
                 </div>
             </form>
         </section>

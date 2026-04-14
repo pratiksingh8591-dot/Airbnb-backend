@@ -21,24 +21,14 @@
                 <% if (regHomes.length === 0) { %>
                     <li class="rounded-lg border border-dashed border-slate-300 p-4 sm:col-span-2">No homes registered yet.</li>
                 <% } else { %>
-                    <% regHomes.forEach((i, cardIndex) => { %>
+                    <% regHomes.forEach((i) => { %>
                         <li class="rounded-xl border border-slate-200 bg-slate-50 p-4 shadow-sm">
-                            <% const photos = i.photoUrls && i.photoUrls.length ? i.photoUrls : [i.photoUrl].filter(Boolean); %>
+                            <% const photos = i.photoUrls && i.photoUrls.length ? i.photoUrls : [i.photoURL || i.photoUrl].filter(Boolean); %>
                             <% if (photos.length > 0) { %>
                                 <div class="relative mb-3">
                                     <div class="overflow-hidden rounded-lg border border-slate-200 bg-white">
-                                        <div id="photos-<%= cardIndex %>" class="relative h-52 w-full" data-index="0">
-                                            <% photos.forEach((photo, index) => { %>
-                                                <% if (index === 0) { %>
-                                                    <img src="<%= photo %>" alt="<%= i.housename %> photo <%= index + 1 %>" class="absolute inset-0 h-52 w-full object-cover" style="display: block;" data-photo-slide>
-                                                <% } else { %>
-                                                    <img src="<%= photo %>" alt="<%= i.housename %> photo <%= index + 1 %>" class="absolute inset-0 h-52 w-full object-cover" style="display: none;" data-photo-slide>
-                                                <% } %>
-                                            <% }) %>
-                                        </div>
+                                        <img src="<%= photos[0] %>" alt="<%= i.housename %> photo" class="h-52 w-full object-cover">
                                     </div>
-                                    <button type="button" aria-label="Previous photo" class="absolute left-0 top-1/2 z-20 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-xl font-bold text-slate-800 shadow-lg ring-1 ring-slate-300" onclick="slidePhotos('photos-<%= cardIndex %>', -1)">&lt;</button>
-                                    <button type="button" aria-label="Next photo" class="absolute right-0 top-1/2 z-20 flex h-10 w-10 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-xl font-bold text-slate-800 shadow-lg ring-1 ring-slate-300" onclick="slidePhotos('photos-<%= cardIndex %>', 1)">&gt;</button>
                                 </div>
                             <% } %>
                             <h3 class="text-lg font-semibold text-slate-900"><%= i.housename %></h3>
@@ -52,22 +42,5 @@
             </ul>
         </section>
     </main>
-    <script>
-        function slidePhotos(containerId, direction) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-
-            const slides = container.querySelectorAll('[data-photo-slide]');
-            const totalSlides = slides.length;
-            if (!totalSlides) return;
-
-            const currentIndex = Number(container.dataset.index || 0);
-            const nextIndex = (currentIndex + direction + totalSlides) % totalSlides;
-
-            slides[currentIndex].style.display = 'none';
-            slides[nextIndex].style.display = 'block';
-            container.dataset.index = String(nextIndex);
-        }
-    </script>
 </body>
 </html>

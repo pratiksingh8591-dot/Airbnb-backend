@@ -1,10 +1,7 @@
 
 const express=require('express');
-const {regHomes}=require('./host')
+const {regHomes}=require('../controller/homes')
 const userRouter=express.Router();
-
-userRouter.get("/",(req,res,next)=>{
-console.log(regHomes);
-res.render('home',{regHomes:regHomes , content:'welcome to AIR_bNB'})
-})
+const controller=require('../controller/homes')
+userRouter.get("/",controller.gethome)
  module.exports=userRouter;

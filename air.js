@@ -2,6 +2,7 @@ const express=require('express');
 const {hostRouter}=require("./routes/host");
 const user=require("./routes/user")
 const path=require('path')
+const controller=require('./controller/errorcontroller')
  const app=express();
  app.set('view engine','ejs');
  app.set('views','views');
@@ -15,9 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(rootdir,'public')))
 app.use(user);
 app.use("/host",hostRouter);
-app.use((req,res,next)=>{
-  res.status(404).render('404',{content:"oh oh try again"});
-})
+app.use(controller.error)
 const port = 3001;
 app.listen(port, () => {
     console.log(`The HTTP server is running at http://localhost:${port}`);

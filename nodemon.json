@@ -1,0 +1,6 @@
+{
+    "watch": ["air.js", "controller", "routes", "views", "models", "utils"],
+    "ext": "js,ejs",
+    "ignore": ["node_modules/**", "data/**", "public/output.css"],
+    "exec": "node air.js"
+}
